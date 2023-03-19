@@ -1,6 +1,6 @@
 <template>
   <div :key="task.id" v-for="task in tasks">
-    <AppTask :task="task" />
+    <AppTask @delete-task="$emit('delete-task', task.id)" :task="task" />
   </div>
 </template>
 
@@ -12,5 +12,6 @@ export default {
     tasks: Array,
   },
   components: { AppTask },
+  emits: ["delete-task"],
 };
 </script>

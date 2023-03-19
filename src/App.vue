@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <AppHeader title="Task Tracker" />
-    <AppTasks :tasks="tasks" />
+    <AppTasks @delete-task="deleteTask" :tasks="tasks" />
   </div>
 </template>
 
@@ -19,6 +19,13 @@ export default {
     return {
       tasks: [],
     };
+  },
+  methods: {
+    deleteTask(id) {
+      if (confirm("Are you sure?")) {
+        this.tasks = this.tasks.filter((task) => task.id !== id); //getting everything back except tasks with this id
+      }
+    },
   },
   created() {
     this.tasks = [
